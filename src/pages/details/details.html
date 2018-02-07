@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{designation}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-slides pager style="height: 50%">
+
+    <ion-slide style="background-color: transparent">
+      <img src="assets/imgs/logo.jpg" width="328" height="248">
+    </ion-slide>
+
+    <ion-slide style="background-color: transparent">
+      <img src="assets/imgs/Formation-informatique-Eysines.jpg">
+    </ion-slide>
+
+    <ion-slide style="background-color: transparent">
+      <img src="assets/imgs/gbk.jpg">
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-card>
+
+    <ion-card-header>
+      Nom
+    </ion-card-header>
+
+    <ion-card-content>
+      {{designation}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      Secteur
+    </ion-card-header>
+
+    <ion-card-content>
+      {{secteur}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      Type
+    </ion-card-header>
+
+    <ion-card-content>
+      {{type}}
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      Note
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star-half"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <div id="map"></div>
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-item>
+      <ion-icon name="football" item-start large></ion-icon>
+      <h2>Adresse</h2>
+      <p>11 N. Way St, Madison, WI 53703</p>
+    </ion-item>
+
+
+  </ion-card>
+
+
+
+</ion-content>

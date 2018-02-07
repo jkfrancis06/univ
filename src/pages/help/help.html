@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>A propos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item class="text" *ngFor="let item of schools | async">
+      {{item.properties.name}}
+    </ion-item>
+  </ion-list>
+
+</ion-content>

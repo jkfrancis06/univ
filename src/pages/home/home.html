@@ -1,17 +1,54 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Acceuil</ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+
+
+  <ion-card>
+
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="pin" (tap)="getMapAction()"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <img src="assets/imgs/logo.jpg" height="50%" width="50%">
+
+    <ion-card-content>
+      <ion-card-title>
+        Institut Africain d'Administration et d'Etudes Commerciales
+      </ion-card-title>
+      <p>
+        Tokoin Doumassesse, Lome
+      </p>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>1211 Likes</div>
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>114 Comments</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+
 </ion-content>
