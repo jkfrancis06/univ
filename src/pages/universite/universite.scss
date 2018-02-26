@@ -1,3 +1,15 @@
 page-home {
 
 }
+
+.fab-container {
+  position: relative;
+}
+
+.img-loaded + ion-spinner {
+  display:none;
+}
+
+.img-logo{
+  max-height: 25%;
+}

@@ -1,99 +1,124 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{designation}}</ion-title>
+    <ion-title>{{univ.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <ion-slides pager style="height: 50%">
-
-    <ion-slide style="background-color: transparent">
-      <img src="assets/imgs/logo.jpg" width="328" height="248">
-    </ion-slide>
-
-    <ion-slide style="background-color: transparent">
-      <img src="assets/imgs/Formation-informatique-Eysines.jpg">
-    </ion-slide>
-
-    <ion-slide style="background-color: transparent">
-      <img src="assets/imgs/gbk.jpg">
-    </ion-slide>
-
-  </ion-slides>
-
   <ion-card>
+    <img [src]="univ.picUrl"/>
 
-    <ion-card-header>
-      Nom
-    </ion-card-header>
-
-    <ion-card-content>
-      {{designation}}
-    </ion-card-content>
-
-  </ion-card>
-
-  <ion-card>
-
-    <ion-card-header>
-      Secteur
-    </ion-card-header>
-
-    <ion-card-content>
-      {{secteur}}
-    </ion-card-content>
-
-  </ion-card>
-
-  <ion-card>
-
-    <ion-card-header>
-      Type
-    </ion-card-header>
-
-    <ion-card-content>
-      {{type}}
-    </ion-card-content>
-
-  </ion-card>
-
-  <ion-card>
-
-    <ion-card-header>
-      Note
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </ion-card-content>
-
-  </ion-card>
-
-
-  <ion-card>
-
-    <div id="map"></div>
-    <ion-fab right top>
-      <button ion-fab>
-        <ion-icon name="pin"></ion-icon>
-      </button>
+    <ion-fab top right>
+      <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
     </ion-fab>
 
-    <ion-item>
-      <ion-icon name="football" item-start large></ion-icon>
-      <h2>Adresse</h2>
-      <p>11 N. Way St, Madison, WI 53703</p>
-    </ion-item>
+    <ion-card-content>
+      <ion-card-title>
+        {{univ.fullname}}
+      </ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="pin"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <div *ngFor="let adress of adress">
+              <p>{{adress.adress}}</p>
+              <p>{{adress.localIndication}}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="call"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <div *ngFor="let adress of adress">
+              <p>{{adress.tel1}}</p>
+              <p>{{adress.tel2}}</p>
+            </div>
+          </ion-col>
+        </ion-row>
 
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="mail"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <div *ngFor="let adress of adress">
+              <p>{{adress.mail}}</p>
+            </div>
+          </ion-col>
+        </ion-row>
 
+      </ion-grid>
+
+    </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-card-header>
+      Historique
+    </ion-card-header>
+    <ion-card-content>
+      {{univ.description}}
+    </ion-card-content>
+  </ion-card>
 
+  <ion-card>
+    <ion-card-header>
+      Filieres
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-group>
+        <ion-item-divider color="dark">BTS1</ion-item-divider>
+        <div *ngFor="let filiere of filieres">
+          <ng-template [ngIf]="filiere.cycle == 'BTS1'">
+            <button ion-item (click)="showMatieres(filiere.$key)">
+              {{ filiere.fullname }}
+            </button>
+          </ng-template>
+        </div>
+
+        <ion-item-divider color="dark">BTS2</ion-item-divider>
+        <div *ngFor="let filiere of filieres">
+          <ng-template [ngIf]="filiere.cycle == 'BTS2'">
+            <button ion-item (click)="showMatieres(filiere.$key)">
+              {{ filiere.fullname }}
+            </button>
+          </ng-template>
+        </div>
+
+        <ion-item-divider color="dark">Licence 3</ion-item-divider>
+        <div *ngFor="let filiere of filieres">
+          <ng-template [ngIf]="filiere.cycle == 'Licence 3'">
+            <button ion-item (click)="showMatieres(filiere.$key)">
+              {{ filiere.fullname }}
+            </button>
+          </ng-template>
+        </div>
+
+        <ion-item-divider color="dark">Master 1</ion-item-divider>
+        <div *ngFor="let filiere of filieres">
+          <ng-template [ngIf]="filiere.cycle == 'Master 1'">
+            <button ion-item (click)="showMatieres(filiere.$key)">
+              {{ filiere.fullname }}
+            </button>
+          </ng-template>
+        </div>
+
+        <ion-item-divider color="dark">Master 2</ion-item-divider>
+        <div *ngFor="let filiere of filieres">
+          <ng-template [ngIf]="filiere.cycle == 'Master 2'">
+            <button ion-item (click)="showMatieres(filiere.$key)">
+              {{ filiere.fullname }}
+            </button>
+          </ng-template>
+        </div>
+      </ion-item-group>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

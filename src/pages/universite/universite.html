@@ -6,64 +6,29 @@
 
 
 <ion-content padding>
-
-
-
-
-
-<!--<ion-list>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img >
-      </ion-thumbnail>
-      <h2></h2>
-      <button ion-button clear item-end (tap)="detailsAction(ecols.properties)">Details</button>
-    </ion-item>
-  </ion-list>-->
-
-  <div  *ngFor="let ecols of schools">
+  <ng-container *ngFor="let univ of univ">
     <ion-card>
 
+      <img class="img-logo" [src]="univ.picUrl">
+      <!--<img-loader [src]="univ.picUrl"></img-loader> -->
 
-      <img src="assets/imgs/gbk.png" height="50%" width="50%">
+
+      <div class="fab-container">
+        <ion-fab bottom right edge>
+          <button ion-fab mini color="light" (click)="loadDetails(univ.$key)">
+            <ion-icon name="ios-open-outline"></ion-icon>
+          </button>
+        </ion-fab>
+      </div>
 
       <ion-card-content>
-        <ion-card-title text-center="" class="title" medium>
-          {{ecols.properties.name}}
+        <ion-card-title>
+          {{univ.name}}
         </ion-card-title>
         <p>
-
+          {{univ.fullname}}
         </p>
-        <ion-row>
-          <ion-col col-6>
-            <button ion-button clear small style="color: black">
-              <div>Lome, TOGO</div>
-            </button>
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button icon-left clear small   (tap)="getMapAction(ecols.geometry.coordinates[1],ecols.geometry.coordinates[0],ecols.properties.name)" style="color: black">
-              <ion-icon name="pin"></ion-icon>
-              <div>Localisation</div>
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            <button ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>1211 Likes</div>
-            </button>
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>114 Comments</div>
-            </button>
-          </ion-col>
-        </ion-row>
       </ion-card-content>
     </ion-card>
-  </div>
-
-
+  </ng-container>
 </ion-content>

@@ -1,41 +1,54 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {MapPage} from "../map/map";
+import {SchoolService} from "../../services/schoolservice.service";
+import {MatieresPage} from "../matieres/matieres";
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-details',
   templateUrl: 'details.html'
 })
-export class DetailsPage {
+export class DetailsPage implements OnInit{
 
-  designation : string;
-  latitude: number;
-  longitude: number;
-  secteur: string;
-  type: string;
+  id: string;
+  univ:any;
+  adress: any;
+  filieres: any;
 
+  constructor(public navCtrl: NavController,
+              private params : NavParams,
+              private schoolService: SchoolService) {
 
-  constructor(public navCtrl: NavController, private params : NavParams) {
-
-    this.designation = this.params.get('designation');
-    this.latitude = this.params.get('latitude');
-    this.longitude = this.params.get('longitude');
-    this.secteur = this.params.get('secteur');
-    this.type = this.params.get('type');
+      this.id = this.params.get('id');
 
   }
 
-  getMapAction(){
+  ngOnInit(){
+    this.schoolService.loadUniv(this.id).subscribe(
+      univ => {
+        this.univ = univ;
+      }
+    );
 
-    this.navCtrl.push(MapPage,{
+    this.schoolService.loadUnivAdress(this.id).subscribe(
+      adress => {
+        this.adress = adress;
+      }
+    );
 
-      latitude : 6.19773,
-      longitude: 1.20225
+    this.schoolService.loadUnivFilieres(this.id).subscribe(
+      filiere => {
+        this.filieres = filiere;
+        console.log(this.filieres);
+      }
+    );
+  }
 
+  showMatieres(filiere){
+    this.navCtrl.push(MatieresPage,{
+      filiere: filiere,
+      ecol: this.id
     })
-
   }
-
 
 
 

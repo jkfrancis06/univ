@@ -1,43 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {SchoolService} from "../../services/schoolservice.service";
-import {MapPage} from "../map/map";
+import {DetailsPage} from "../details/details";
+import { LoadingController } from 'ionic-angular';
+import { IonicImageLoader } from 'ionic-image-loader';
+
 
 @Component({
   selector: 'page-universite',
   templateUrl: 'universite.html'
 })
-export class UniversitePage {
+export class UniversitePage implements OnInit{
 
-  universities : any;
-  schools: any;
+  univ: any[];
+  showLoader: boolean = true;
+  loader: any;
 
-  constructor(public navCtrl: NavController, public schoolService: SchoolService) {
-
-    this.schoolService.getSchools()
-      .then(data => {
-        this.universities = data;
-        console.log(this.universities.features)
-        this.schools = this.universities.features
-        console.log(this.schools)
-      })
-
-
-
+  constructor(public navCtrl: NavController,
+              public loadingCtrl: LoadingController,
+              public schoolService: SchoolService) {
 
   }
 
+  ngOnInit(){
+    this.presentLoading()
 
-  getMapAction(lat,long,name){
+    this.schoolService.getUniv().subscribe(
+      universities => {
+        this.univ = universities;
+        this.loader.dismiss();
+        console.log(this.univ);
+      });
+  }
 
-    this.navCtrl.push(MapPage,{
-
-      latitude : lat,
-      longitude: long,
-      name: name
-
+  loadDetails(id){
+    this.navCtrl.push(DetailsPage,{
+      id: id
     })
-
   }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    this.loader.present();
+  }
+
 
 }

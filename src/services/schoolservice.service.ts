@@ -1,26 +1,57 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core'
+import {University} from "../models/University";
+import {Filiere} from "../models/Filiere";
+import {Matieres} from "../models/matieres";
+import {Adresses} from "../models/Adresses";
+import {Observable} from "rxjs/Observable";
+import { AngularFireAuth } from 'angularfire2/auth';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+
 
 
 @Injectable()
 
 export class SchoolService{
 
-  constructor (private http: HttpClient){}
+  universities: FirebaseListObservable<University[]>;
+  univ: FirebaseObjectObservable<any>;
 
+  adresses: FirebaseListObservable<Adresses[]>
+  filieres: FirebaseListObservable<Filiere[]>
+  matieres: FirebaseListObservable<Matieres[]>
 
-  getSchools(){
+  constructor(public af: AngularFireDatabase) {
 
-    return new Promise(resolve => {
-      this.http.get('assets/data/university_togo.json')
-        .subscribe(data => {
-          resolve (data)
-        },err =>{
-          console.log(err)
-        });
-    });
+    this.universities = this.af.list('/') as FirebaseListObservable<University[]>;
 
   }
+
+  getUniv() {
+    return this.universities;
+  }
+
+  loadUniv(id){
+    this.univ = this.af.object('/' + id) as FirebaseObjectObservable<University>;
+
+    return this.univ;
+  }
+
+  loadUnivAdress(id){
+    this.adresses = this.af.list('/' + id + '/adresses') as FirebaseListObservable<Adresses[]>;
+    return this.adresses;
+  }
+
+  loadUnivFilieres(id){
+    this.filieres = this.af.list('/' + id + '/filieres') as FirebaseListObservable<Filiere[]>
+    return this.filieres;
+  }
+  getMatieres (ecol, id) {
+    this.matieres = this.af.list('/' + ecol + '/filieres/' + id + '/matiere' ) as FirebaseListObservable<Matieres[]>;
+    return this.matieres;
+  }
+
+
+
 
 }
 

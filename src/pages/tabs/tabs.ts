@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { HomePage } from '../home/home';
 import {UniversitePage} from "../universite/universite";
 import {HelpPage} from "../help/help";
 
@@ -9,7 +8,6 @@ import {HelpPage} from "../help/help";
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
   tab2Root = UniversitePage;
   tab3Root = HelpPage;
 
