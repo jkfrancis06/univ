@@ -1,13 +1,13 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Platform, NavController, NavParams } from 'ionic-angular';
-
+import { LoadingController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, LatLng, GoogleMapsEvent} from "@ionic-native/google-maps";
 
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
 })
-export class MapPage {
+export class MapPage implements OnInit{
 
   @ViewChild('map')
   private mapElement:ElementRef;
@@ -17,16 +17,28 @@ export class MapPage {
   private long: any;
   private lat: any;
   private name: any;
+  showLoader: boolean = true;
+  loader: any;
 
-  constructor(private platform:Platform, private googleMaps:GoogleMaps, private params: NavParams) {
-    this.long = this.params.get('latitude');
-    this.lat = this.params.get('longitude');
+  constructor(private platform:Platform,
+              private googleMaps:GoogleMaps,
+              private loadingCtrl: LoadingController,
+              private params: NavParams) {
+    this.long = this.params.get('lat');
+    this.lat = this.params.get('long');
     this.name = this.params.get('name');
     this.location = new LatLng(this.lat, this.long);
 
   }
 
-  ionViewDidLoad() {
+  ngOnInit(){
+    this.presentLoading()
+    if (this.loadMap() == 'ok' ){
+      this.loader.dismiss()
+    }
+  }
+
+  loadMap() {
 
 
     this.platform.ready().then(() => {
@@ -46,6 +58,7 @@ export class MapPage {
         //setTimeout(() => {this.addMarker()}, 2000);
       });
     });
+    return 'ok'
   }
 
   addMarker(nom) {
@@ -63,5 +76,13 @@ export class MapPage {
         });
       });
   }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    this.loader.present();
+  }
+
 
 }

@@ -10,10 +10,6 @@
   <ion-card>
     <img [src]="univ.picUrl"/>
 
-    <ion-fab top right>
-      <button ion-fab mini><ion-icon name="pin"></ion-icon></button>
-    </ion-fab>
-
     <ion-card-content>
       <ion-card-title>
         {{univ.fullname}}
@@ -25,6 +21,9 @@
           </ion-col>
           <ion-col col-10>
             <div *ngFor="let adress of adress">
+              <ion-fab top right>
+                <button ion-fab mini (click)="loadMap(adress.lat, adress.long, univ.fullname)"><ion-icon name="pin"></ion-icon></button>
+              </ion-fab>
               <p>{{adress.adress}}</p>
               <p>{{adress.localIndication}}</p>
             </div>
@@ -76,7 +75,7 @@
         <ion-item-divider color="dark">BTS1</ion-item-divider>
         <div *ngFor="let filiere of filieres">
           <ng-template [ngIf]="filiere.cycle == 'BTS1'">
-            <button ion-item (click)="showMatieres(filiere.$key)">
+            <button ion-item (click)="showMatieres(filiere.$key, filiere.fullname)">
               {{ filiere.fullname }}
             </button>
           </ng-template>
@@ -85,7 +84,7 @@
         <ion-item-divider color="dark">BTS2</ion-item-divider>
         <div *ngFor="let filiere of filieres">
           <ng-template [ngIf]="filiere.cycle == 'BTS2'">
-            <button ion-item (click)="showMatieres(filiere.$key)">
+            <button ion-item (click)="showMatieres(filiere.$key, filiere.fullname)">
               {{ filiere.fullname }}
             </button>
           </ng-template>
@@ -94,7 +93,7 @@
         <ion-item-divider color="dark">Licence 3</ion-item-divider>
         <div *ngFor="let filiere of filieres">
           <ng-template [ngIf]="filiere.cycle == 'Licence 3'">
-            <button ion-item (click)="showMatieres(filiere.$key)">
+            <button ion-item (click)="showMatieres(filiere.$key, filiere.fullname)">
               {{ filiere.fullname }}
             </button>
           </ng-template>
@@ -103,7 +102,7 @@
         <ion-item-divider color="dark">Master 1</ion-item-divider>
         <div *ngFor="let filiere of filieres">
           <ng-template [ngIf]="filiere.cycle == 'Master 1'">
-            <button ion-item (click)="showMatieres(filiere.$key)">
+            <button ion-item (click)="showMatieres(filiere.$key, filiere.fullname)">
               {{ filiere.fullname }}
             </button>
           </ng-template>
@@ -112,7 +111,7 @@
         <ion-item-divider color="dark">Master 2</ion-item-divider>
         <div *ngFor="let filiere of filieres">
           <ng-template [ngIf]="filiere.cycle == 'Master 2'">
-            <button ion-item (click)="showMatieres(filiere.$key)">
+            <button ion-item (click)="showMatieres(filiere.$key, filiere.fullname)">
               {{ filiere.fullname }}
             </button>
           </ng-template>

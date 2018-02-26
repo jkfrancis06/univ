@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ecol}}</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-   {{filiere}}
+  <ion-list>
+    <ion-list-header>
+      Liste des matieres
+    </ion-list-header>
+    <div *ngFor="let matieres of matieres">
+      <ion-item>{{matieres.name}}</ion-item>
+    </div>
+  </ion-list>
 </ion-content>

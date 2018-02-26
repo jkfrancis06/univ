@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {SchoolService} from "../../services/schoolservice.service";
+import {MapPage} from "../map/map";
 import {MatieresPage} from "../matieres/matieres";
 
 @Component({
@@ -43,10 +44,19 @@ export class DetailsPage implements OnInit{
     );
   }
 
-  showMatieres(filiere){
+  showMatieres(filiere, name){
     this.navCtrl.push(MatieresPage,{
       filiere: filiere,
-      ecol: this.id
+      ecol: this.id,
+      name: name
+    })
+  }
+
+  loadMap(lat,long,name){
+    this.navCtrl.push(MapPage, {
+      lat: lat,
+      long: long,
+      name: name
     })
   }
 

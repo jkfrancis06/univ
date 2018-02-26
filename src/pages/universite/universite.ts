@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import {SchoolService} from "../../services/schoolservice.service";
 import {DetailsPage} from "../details/details";
 import { LoadingController } from 'ionic-angular';
-import { IonicImageLoader } from 'ionic-image-loader';
 
 
 @Component({

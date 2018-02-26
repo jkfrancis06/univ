@@ -11,14 +11,16 @@ export class MatieresPage implements OnInit{
 
   ecol: string;
   filiere: string;
-  matieres: any
+  name : string;
+  matieres: any;
 
   constructor(public navCtrl: NavController,
               private params : NavParams,
               private schoolService: SchoolService) {
 
     this.ecol = this.params.get('ecol');
-    this.filiere = this.params.get('filiere')
+    this.filiere = this.params.get('filiere');
+    this.name = this.params.get('name');
 
   }
 
