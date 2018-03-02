@@ -5,5 +5,6 @@ export interface University {
   picUrl?: string;
   picName?: string;
   description?: any;
+  acceuil?: number;
 
 }

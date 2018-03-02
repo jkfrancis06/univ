@@ -13,6 +13,7 @@ import {DetailsPage} from "../pages/details/details";
 import {MapPage} from "../pages/map/map";
 import {HelpPage} from "../pages/help/help";
 import {MatieresPage} from "../pages/matieres/matieres";
+import {AcceuilPage} from "../pages/acceuil/acceuil";
 
 
 import {SchoolService} from "../services/schoolservice.service";
@@ -46,7 +47,8 @@ const firebaseConfig = {
     DetailsPage,
     MapPage,
     HelpPage,
-    MatieresPage
+    MatieresPage,
+    AcceuilPage
   ],
   imports: [
     HttpClientModule,
@@ -65,7 +67,8 @@ const firebaseConfig = {
     DetailsPage,
     MapPage,
     HelpPage,
-    MatieresPage
+    MatieresPage,
+    AcceuilPage
   ],
   providers: [
     SchoolService,

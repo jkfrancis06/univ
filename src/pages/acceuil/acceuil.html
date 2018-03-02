@@ -1,0 +1,42 @@
+<!--
+  Generated template for the AcceuilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Acceuil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ng-container *ngFor="let univ of univ">
+    <ion-card>
+
+      <img class="img-logo" [src]="univ.picUrl">
+      <!--<img-loader [src]="univ.picUrl"></img-loader> -->
+
+
+      <div class="fab-container">
+        <ion-fab bottom right edge>
+          <button ion-fab mini color="light" (click)="loadDetails(univ.$key)">
+            <ion-icon name="ios-open-outline"></ion-icon>
+          </button>
+        </ion-fab>
+      </div>
+
+      <ion-card-content>
+        <ion-card-title>
+          {{univ.name}}
+        </ion-card-title>
+        <p>
+          {{univ.fullname}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

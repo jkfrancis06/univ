@@ -19,6 +19,7 @@ export class SchoolService{
   adresses: FirebaseListObservable<Adresses[]>
   filieres: FirebaseListObservable<Filiere[]>
   matieres: FirebaseListObservable<Matieres[]>
+  homeUniv: FirebaseListObservable<University[]>;
 
   constructor(public af: AngularFireDatabase) {
 
@@ -28,6 +29,15 @@ export class SchoolService{
 
   getUniv() {
     return this.universities;
+  }
+
+  getHomeUniv(): FirebaseListObservable<University[]> {
+    return this.af.list('/', {
+      query: {
+        orderByChild: 'acceuil',
+        equalTo: 1
+      }
+    });
   }
 
   loadUniv(id){

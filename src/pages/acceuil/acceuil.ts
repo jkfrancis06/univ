@@ -4,12 +4,18 @@ import {SchoolService} from "../../services/schoolservice.service";
 import {DetailsPage} from "../details/details";
 import { LoadingController } from 'ionic-angular';
 
+/**
+ * Generated class for the AcceuilPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @Component({
-  selector: 'page-universite',
-  templateUrl: 'universite.html'
+  selector: 'page-acceuil',
+  templateUrl: 'acceuil.html',
 })
-export class UniversitePage implements OnInit{
+export class AcceuilPage implements OnInit{
 
   univ: any[];
   showLoader: boolean = true;
@@ -19,21 +25,19 @@ export class UniversitePage implements OnInit{
   constructor(public navCtrl: NavController,
               public loadingCtrl: LoadingController,
               public schoolService: SchoolService) {
-
   }
 
   ngOnInit(){
     this.presentLoading()
     this.getSchool()
-
   }
 
   getSchool(){
-    this.schoolService.getUniv().subscribe(
+    this.schoolService.getHomeUniv().subscribe(
       universities => {
         this.univ = universities;
+        console.log(this.univ)
         this.loader.dismiss();
-        console.log(this.univ);
       });
   }
 
@@ -48,21 +52,6 @@ export class UniversitePage implements OnInit{
       content: "Please wait..."
     });
     this.loader.present();
-  }
-
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    this.getSchool();
-
-    // set val to the value of the searchbar
-    let val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.univ = this.univ.filter((item) => {
-        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
   }
 
 

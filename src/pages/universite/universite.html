@@ -2,32 +2,20 @@
   <ion-navbar>
     <ion-title>Liste des ecoles</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
   <ng-container *ngFor="let univ of univ">
-    <ion-card>
-
-      <img class="img-logo" [src]="univ.picUrl">
-      <!--<img-loader [src]="univ.picUrl"></img-loader> -->
-
-
-      <div class="fab-container">
-        <ion-fab bottom right edge>
-          <button ion-fab mini color="light" (click)="loadDetails(univ.$key)">
-            <ion-icon name="ios-open-outline"></ion-icon>
-          </button>
-        </ion-fab>
-      </div>
-
+    <ion-card (click)="loadDetails(univ.$key)">
+      <ion-card-header>
+        {{univ.name}}
+      </ion-card-header>
       <ion-card-content>
-        <ion-card-title>
-          {{univ.name}}
-        </ion-card-title>
-        <p>
-          {{univ.fullname}}
-        </p>
+        {{univ.fullname}}
       </ion-card-content>
     </ion-card>
   </ng-container>

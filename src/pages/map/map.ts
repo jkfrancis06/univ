@@ -24,6 +24,7 @@ export class MapPage implements OnInit{
               private googleMaps:GoogleMaps,
               private loadingCtrl: LoadingController,
               private params: NavParams) {
+
     this.long = this.params.get('lat');
     this.lat = this.params.get('long');
     this.name = this.params.get('name');
@@ -51,11 +52,8 @@ export class MapPage implements OnInit{
           zoom: 18,
           tilt: 30
         };
-
-
-        this.map.moveCamera(options);
         this.addMarker(this.name);
-        //setTimeout(() => {this.addMarker()}, 2000);
+        //setTimeout() => {this.addMarker()}, 2000);
       });
     });
     return 'ok'
